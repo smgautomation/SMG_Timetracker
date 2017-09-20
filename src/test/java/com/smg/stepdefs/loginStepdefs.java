@@ -11,12 +11,8 @@ public class loginStepdefs implements En{
 	
 	public loginStepdefs(ScenarioHooks hooks, TimeTrackerHomePage timeTrackerHomePage) {
 		Given("I am logged in as an (.*)$", (String userRole) -> {
-			timeTrackerHomePage.setDriver(hooks.getDriverNavigator());
+			timeTrackerHomePage.setDriver(hooks.getDriverNavigator(), hooks.getScenarioName());
 			Assert.assertThat(timeTrackerHomePage.loginTimetracker(userRole), Matchers.equalTo(true));
-		});
-		
-		When("I click the File A Leave icon$", () -> {
-			Assert.assertThat(timeTrackerHomePage.clickFileALeaveButton(), Matchers.equalTo(true));
 		});
 	}
 }

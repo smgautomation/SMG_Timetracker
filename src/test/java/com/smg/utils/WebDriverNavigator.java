@@ -1,10 +1,13 @@
 package com.smg.utils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -16,12 +19,13 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.cucumber.listener.Reporter;
 import com.smg.constants.CommonConstants;
 
 import cucumber.api.Scenario;
 
 public class WebDriverNavigator {
-	private static final Logger log = Logger.getLogger(WebDriverNavigator.class);
+	private static final Logger log = LogManager.getLogger(WebDriverNavigator.class);
 	private final WebDriver driver;
 
     public WebDriverNavigator(WebDriver driver) {
@@ -141,13 +145,30 @@ public class WebDriverNavigator {
     }
     
     /**
-	* Embed a screenshot in test report
-	*/
+     * Click a button
+     * @param buttonElement
+     */
+    public void clickButton(By buttonElement) {
+    	if (isElementPresent(buttonElement)) {
+    		driver.findElement(buttonElement).click();
+    		log.info("Button is clicked.");
+    	} else {
+    		log.error("Button is NOT present.");
+    	}
+    }
+    
+    /**
+     * 
+     * @param scenario
+     * @return String
+     */
 	public void embedScreenshot(Scenario scenario) {
-		String outPath = "target/screenshots/" + scenario.getId() + scenario.getName() + "/" + scenario.getName().replaceAll("[; !@#$%^&()+=]", "_")+".png";
+		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+		String outPath = System.getProperty("user.dir") + "\\target\\screenshots\\" + scenario.getId().split(";")[0] + "\\" + scenario.getName().replaceAll("\\s", "_") + "_" + timeStamp + ".png";
 		try {
 			File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File(outPath).getAbsoluteFile());
+			Reporter.addScreenCaptureFromPath(outPath);
         } catch (Throwable e) {
             e.printStackTrace();
         }

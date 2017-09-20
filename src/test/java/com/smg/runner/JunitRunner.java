@@ -17,9 +17,9 @@ import cucumber.api.junit.Cucumber;
 		features = "src/test/resources/features", 
 		glue = { "com.smg.stepdefs" }, 
 		plugin = {
-		"pretty", "html:target/site/cucumber-pretty", "json:target/output/cucumber.json",
+		"pretty", "json:target/output/cucumber.json",
 		"com.cucumber.listener.ExtentCucumberFormatter:target/output/report.html"},
-		tags = {"@web"}, 
+		tags = {"@loggingofhours"}, 
 		monochrome = true)
 public class JunitRunner {
 	@AfterClass

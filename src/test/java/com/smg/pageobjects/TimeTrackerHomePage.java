@@ -1,6 +1,7 @@
 package com.smg.pageobjects;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,7 +9,7 @@ import com.cucumber.listener.Reporter;
 import com.smg.utils.PropertyUtil;
 
 public class TimeTrackerHomePage extends BasePage {
-	private static final Logger log = Logger.getLogger(TimeTrackerHomePage.class);
+	private static final Logger log = LogManager.getLogger(TimeTrackerHomePage.class);
 	
 	@FindBy(id = "Username")
     private WebElement fld_Username;
@@ -49,6 +50,7 @@ public class TimeTrackerHomePage extends BasePage {
 	public boolean clickFileALeaveButton() {
 		driverNavigator.clickButton(btn_fileLeave);
 		if (driverNavigator.isElementPresent(modal_fileALeave)) {
+			driverNavigator.embedScreenshot(scenario);
 			log.info("File a Leave modal is displayed.");
 			return true;
 		}
@@ -56,6 +58,10 @@ public class TimeTrackerHomePage extends BasePage {
 		return false;
 	}
 	
+	/**
+	 * Verify if user is successfully logged in
+	 * @return
+	 */
 	private boolean isUserSuccessfullyLoggedIn() {
 		if (driverNavigator.isElementPresent(link_Profile)) {
 			Reporter.addScenarioLog("User is successfully logged in.");

@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>SMG</groupId>
-	<artifactId>SMGAutomation_with_updated_reports</artifactId>
+	<artifactId>SMG_Timetracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>SMGAutomation_with_updated_reports</name>
+	<name>SMG_Timetracker</name>
 	<url>http://maven.apache.org</url>
 	<repositories>
 		<repository>
@@ -66,11 +66,16 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.6</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<!-- override the lower version of log4j -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.5</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-picocontainer -->
 		<dependency>
@@ -88,18 +93,18 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
 		<dependency>
-   			<groupId>com.vimalselvam</groupId>
-   			<artifactId>cucumber-extentsreport</artifactId>
-    		<version>3.0.1</version>
+			<groupId>com.vimalselvam</groupId>
+			<artifactId>cucumber-extentsreport</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 		<dependency>
-   			<groupId>com.aventstack</groupId>
-    		<artifactId>extentreports</artifactId>
-    		<version>3.0.7</version>
-    		<scope>provided</scope>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.0.7</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 </project>
