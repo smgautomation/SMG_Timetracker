@@ -33,7 +33,6 @@ public class TimeTrackerHomePage extends BasePage {
 	 * Login to timetracker
 	 */
 	public boolean loginTimetracker(String userRole) {
-		Reporter.addStepLog("Login to Time Tracker.");
 		driverNavigator.get(PropertyUtil.getTestDataProp("timetracker.url"));
 		
 		if (userRole.equalsIgnoreCase("Employee")) {
