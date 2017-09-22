@@ -19,13 +19,13 @@ import cucumber.api.java8.En;
 public class ScenarioHooks implements En{
 	private static final Logger log = LogManager.getLogger(ScenarioHooks.class);
 	public WebDriverNavigator driverNavigator;
-	public ScenarioName scenarioName;
+	public static ScenarioName scenarioName;
 	
 	public WebDriverNavigator getDriverNavigator() {
 		return driverNavigator;
 	}
 	
-	public ScenarioName getScenarioName() {
+	public static ScenarioName getScenarioName() {
 		return scenarioName;
 	}
 	

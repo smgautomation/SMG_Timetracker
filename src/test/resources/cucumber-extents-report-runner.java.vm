@@ -3,15 +3,19 @@
 package $packageName;
 
 #end
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
+import com.cucumber.listener.ExtentProperties;
+import com.cucumber.listener.Reporter;
+import com.smg.stepdefs.ScenarioHooks;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import com.cucumber.listener.Reporter;
-
-import java.io.File;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -19,22 +23,17 @@ import java.io.File;
         features = {"$featureFile"},
         plugin = #stringArray($plugins),
         monochrome = $monochrome,
+        
 #if(!$featureFile.contains(".feature:") && $tags)
         tags = #stringArray($tags),
 #end
         glue = #stringArray($glue))
 public class $className {
-
-    @BeforeClass
-    public static void beforeClass(){
-      //Do things
-    }
-
-    @AfterClass
-    public static void afterClass(){
-      Reporter.loadXMLConfig(new File("src/test/resources/extent-config.xml"));
-      Reporter.setSystemInfo("user", System.getProperty("user.name"));
-      Reporter.setSystemInfo("os", "Windows");
-      Reporter.setTestRunnerOutput("Sample test runner output message");
-    }
+	
+	@AfterClass
+	public static void tearDown() throws IOException {
+		Reporter.loadXMLConfig(new File("src/test/resources/extent-config.xml"));
+        Reporter.setSystemInfo("user", System.getProperty("user.name"));
+        Reporter.setSystemInfo("os", "Windows");
+	}
 }

@@ -13,8 +13,8 @@ public class ChromeBrowserDriver extends ChromeDriver{
 	
 	public static WebDriver buildChromeDriver(){
     	DesiredCapabilities capabilities = DesiredCapabilities.chrome () ;      
-    	capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);        
-    	System.setProperty("webdriver.chrome.driver", PropertyUtil.getProp("src/test/resources/properties/config.properties", "local.driver.location"));
+    	capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    	System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + PropertyUtil.getConfig("local.chrome.driver.location"));
         ChromeBrowserDriver browser = new ChromeBrowserDriver();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return browser;

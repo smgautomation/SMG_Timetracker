@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.java.Before;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
@@ -21,6 +22,13 @@ import cucumber.api.junit.Cucumber;
 		tags = {"@loggingofhours"}, 
 		monochrome = true)
 public class JunitRunner {
+	String reportName = "defaultReportName.html";
+	
+	@Before
+	public void beforeClass() {
+		
+	}
+	
 	@AfterClass
 	public static void tearDown() throws IOException {
 		Reporter.loadXMLConfig(new File("src/test/resources/extent-config.xml"));

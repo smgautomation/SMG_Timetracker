@@ -8,10 +8,10 @@ import com.smg.utils.WebDriverNavigator;
 
 import cucumber.api.Scenario;
 
-public class BasePage {
-	protected WebDriver driver;
-	protected WebDriverNavigator driverNavigator;
-	protected Scenario scenario;
+public abstract class BasePage {
+	WebDriver driver;
+	WebDriverNavigator driverNavigator;
+	public Scenario scenario;
 	
 	public void setDriver(WebDriverNavigator driverNavigator, ScenarioName scenarioName) {
         this.driverNavigator = driverNavigator;
@@ -19,4 +19,8 @@ public class BasePage {
         this.scenario = scenarioName.getScenario();
         PageFactory.initElements(driver, this);
     }
+
+	public Scenario getScenario() {
+		return scenario;
+	}
 }

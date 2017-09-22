@@ -62,7 +62,7 @@ public class TimeTrackerHomePage extends BasePage {
 	 * @return
 	 */
 	private boolean isUserSuccessfullyLoggedIn() {
-		if (driverNavigator.isElementPresent(link_Profile)) {
+		if (driverNavigator.isElementVisible(link_Profile)) {
 			Reporter.addScenarioLog("User is successfully logged in.");
 			return true;
 		}
