@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +38,7 @@ public class EditTimeLogsPage extends BasePage{
 			driverNavigator.embedScreenshot(scenario);
 		} else {
 			log.error("Edit Timelogs modal is NOT displayed.");
+			Assert.fail();
 		}
 		log.exit();
 	}

@@ -52,7 +52,7 @@ public class BrowserBuilder {
 	        }
 
         	try {
-				driver = new RemoteWebDriver(new URL("http://172.15.76.71:5555/wd/hub"), capabilities);
+				driver = new RemoteWebDriver(new URL("http://172.16.220.108:3023/wd/hub"), capabilities);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
